@@ -169,14 +169,14 @@ export default function Contact() {
     <main style={{ backgroundColor: '#F8F5F1' }}>
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 glass shadow-soft">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex justify-between items-center">
           <Link href="/" className="flex items-center hover:opacity-90 transition">
-            <div className="relative flex-shrink-0" style={{ width: '180px', height: 'auto' }}>
+            <div className="relative flex-shrink-0" style={{ width: '150px', height: 'auto' }}>
               <Image
                 src={withBasePath('/images/logo-full.png')}
                 alt="Levin's Joy Logo"
-                width={180}
-                height={70}
+                width={150}
+                height={56}
                 className="object-contain"
                 priority
               />
@@ -198,7 +198,7 @@ export default function Contact() {
           </div>
           <a
             href={phoneHref}
-            className="px-6 py-2 rounded-full font-medium text-white transition-all hover-lift"
+            className="px-6 py-1.5 rounded-full font-medium text-white transition-all hover-lift"
             style={{ backgroundColor: '#8B5E3C' }}
           >
             Order Now

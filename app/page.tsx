@@ -7,6 +7,7 @@ import { SiteFooter } from '@/components/site-footer';
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeNav, setActiveNav] = useState('');
   const [activeTab, setActiveTab] = useState('quality');
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const withBasePath = (path: string) => `${basePath}${path}`;
@@ -16,9 +17,35 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      const sections = ['features', 'products', 'story'];
+      const current = sections.findLast((sectionId) => {
+        const sectionEl = document.getElementById(sectionId);
+        if (!sectionEl) {
+          return false;
+        }
+        return window.scrollY + 140 >= sectionEl.offsetTop;
+      });
+
+      setActiveNav(current || '');
     };
+
+    const handleHashChange = () => {
+      const nextHash = window.location.hash.replace('#', '');
+      if (['features', 'products', 'story'].includes(nextHash)) {
+        setActiveNav(nextHash);
+      }
+    };
+
+    handleHashChange();
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
 
   return (
@@ -26,30 +53,47 @@ export default function Home() {
       {/* Navbar */}
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'glass shadow-soft' : 'bg-transparent'
+          isScrolled
+            ? 'glass shadow-soft'
+            : 'bg-white/80 backdrop-blur-sm shadow-[0_4px_24px_rgba(0,0,0,0.06)] border-b border-black/5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex justify-between items-center">
           <Link href="/" className="flex items-center hover:opacity-90 transition">
-            <div className="relative flex-shrink-0" style={{ width: '180px', height: 'auto' }}>
+            <div className="relative flex-shrink-0" style={{ width: '150px', height: 'auto' }}>
               <Image
                 src={withBasePath('/images/logo-full.png')}
                 alt="Levin's Joy Logo"
-                width={180}
-                height={70}
+                width={150}
+                height={56}
                 className="object-contain"
                 priority
               />
             </div>
           </Link>
           <div className="hidden md:flex gap-8 items-center">
-            <a href="#features" className="text-sm font-medium hover:text-opacity-80 transition" style={{ color: '#2B2B2B' }}>
+            <a
+              href="#features"
+              onClick={() => setActiveNav('features')}
+              className="text-sm font-medium transition"
+              style={{ color: activeNav === 'features' ? '#8B5E3C' : '#2B2B2B' }}
+            >
               Why Us
             </a>
-            <a href="#products" className="text-sm font-medium hover:text-opacity-80 transition" style={{ color: '#2B2B2B' }}>
+            <a
+              href="#products"
+              onClick={() => setActiveNav('products')}
+              className="text-sm font-medium transition"
+              style={{ color: activeNav === 'products' ? '#8B5E3C' : '#2B2B2B' }}
+            >
               Products
             </a>
-            <a href="#story" className="text-sm font-medium hover:text-opacity-80 transition" style={{ color: '#2B2B2B' }}>
+            <a
+              href="#story"
+              onClick={() => setActiveNav('story')}
+              className="text-sm font-medium transition"
+              style={{ color: activeNav === 'story' ? '#8B5E3C' : '#2B2B2B' }}
+            >
               Our Story
             </a>
             <Link href="/contact" className="text-sm font-medium hover:text-opacity-80 transition" style={{ color: '#2B2B2B' }}>
@@ -58,7 +102,7 @@ export default function Home() {
           </div>
           <a
             href={phoneHref}
-            className="px-6 py-2 rounded-full font-medium text-white transition-all hover-lift"
+            className="px-6 py-1.5 rounded-full font-medium text-white transition-all hover-lift"
             style={{ backgroundColor: '#8B5E3C' }}
           >
             Order Now
