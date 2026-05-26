@@ -464,7 +464,7 @@ export default function Contact() {
           ].map((faq, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-lg p-6 shadow-soft hover:shadow-medium transition-all"
+              className="bg-white rounded-lg p-6 shadow-soft hover:shadow-medium transition-all" 
             >
               <h3 className="font-bold text-lg mb-2" style={{ color: '#2B2B2B' }}>
                 {faq.q}
