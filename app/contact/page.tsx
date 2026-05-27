@@ -7,7 +7,7 @@ import { SiteFooter } from '@/components/site-footer';
 
 export default function Contact() {
   const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
-  const WEB3FORMS_ACCESS_KEY = 'b38aa93f-61ab-403d-bc6d-dccd70693419';
+  const WEB3FORMS_ACCESS_KEY = '0046d2e5-87e7-40a9-b625-b6b61586d1bc';
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const withBasePath = (path: string) => `${basePath}${path}`;
   const contactEmail = 'hello@levinstoy.com';
