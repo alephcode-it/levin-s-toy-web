@@ -36,6 +36,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build static site
+        env:
+          NEXT_PUBLIC_BASE_PATH: ''
         run: pnpm run build
 
       - name: Configure Pages
@@ -43,6 +45,12 @@ jobs:
 
       - name: Disable Jekyll
         run: touch out/.nojekyll
+
+      - name: Verify custom domain mapping
+        run: |
+          test -f out/CNAME
+          DOMAIN=$(tr -d '\r\n' < out/CNAME)
+          test "$DOMAIN" = "levinstoy.com"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
