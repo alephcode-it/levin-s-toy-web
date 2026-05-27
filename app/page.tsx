@@ -111,7 +111,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden">
+      <section className="relative min-h-screen flex items-start md:items-center justify-center pt-28 md:pt-20 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div
             className="absolute top-20 left-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
@@ -123,12 +123,12 @@ export default function Home() {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 md:gap-12 items-center relative z-10">
           <div className="space-y-8 fade-up">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight text-balance" style={{ color: '#2B2B2B' }}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-balance" style={{ color: '#2B2B2B' }}>
               Handcrafted Excellence for Little Hands
             </h1>
-            <p className="text-xl leading-relaxed text-opacity-80" style={{ color: '#2B2B2B' }}>
+            <p className="text-lg md:text-xl leading-relaxed text-opacity-80" style={{ color: '#2B2B2B' }}>
               Premium wooden toys inspired by Montessori principles. Each piece is thoughtfully crafted to nurture creativity, learning, and wonder in every moment of play.
             </p>
             <div className="flex gap-4 flex-wrap">
